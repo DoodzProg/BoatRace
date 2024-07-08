@@ -1,0 +1,4 @@
+name: BoatRace
+version: '${version}'
+main: fr.doodz.boatrace.BoatRace
+api-version: '1.21'

@@ -1,0 +1,4 @@
+name: BoatRace
+version: '1.0-SNAPSHOT'
+main: fr.doodz.boatrace.BoatRace
+api-version: '1.21'
