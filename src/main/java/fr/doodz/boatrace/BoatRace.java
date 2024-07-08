@@ -41,11 +41,10 @@ public final class BoatRace extends JavaPlugin implements Listener {
             // Vérifier le bloc 2 blocs en dessous
             double horizontalSpeedFactor = 2;
             Block block2Below = boatLocation.getBlock().getRelative(BlockFace.DOWN, 2);
-            Block block3BelowSpeed = boatLocation.getBlock().getRelative(BlockFace.DOWN, 3);
             if (block2Below.getType() == Material.SPONGE) {
                 Vector currentVelocity = boat.getVelocity();
                 // Appliquer la vélocité modifiée avec une légère augmentation verticale
-                boat.setVelocity(currentVelocity.add(new Vector(0, 1.1, 0)));
+                boat.setVelocity(currentVelocity.add(new Vector(0, 0.5, 0)));
                 player.sendMessage("UP");
                 boat.setGravity(false);
             }
