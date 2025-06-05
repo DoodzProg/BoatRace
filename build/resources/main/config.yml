@@ -1,0 +1,26 @@
+# BoatRace plugin configuration
+# To be completed as needed
+
+# Worlds where the plugin is enabled
+enabled-worlds:
+  - world
+  - world_nether
+  # - other_world
+
+# Types of ice on which the boat can "jump"
+ice-types:
+  - PACKED_ICE
+  - BLUE_ICE
+
+# Enable or disable the BoatRace system globally
+boat-race-enabled: true
+
+# Debug mode to assist development
+debug: false
+
+# Maximum speed of the boat on ice (not yet implemented)
+max-speed: 1.0
+
+# Worlds where the plugin is disabled (optional)
+disabled-worlds:
+  - creative_world

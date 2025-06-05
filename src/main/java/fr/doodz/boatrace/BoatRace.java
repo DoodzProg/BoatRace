@@ -1,60 +1,35 @@
 package fr.doodz.boatrace;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Boat;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
+import fr.doodz.boatrace.command.BoatRaceCommand;
+import fr.doodz.boatrace.listener.BoatMovementListener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.util.Vector;
-import org.checkerframework.checker.units.qual.Speed;
 
-import java.util.HashMap;
-import java.util.UUID;
+public final class BoatRace extends JavaPlugin {
 
-public final class BoatRace extends JavaPlugin implements Listener {
-    private final HashMap<UUID, BukkitTask> raceTimers = new HashMap<>();
+    private static BoatRace instance;
+    private BoatRaceCommand boatRaceCommand;
 
     @Override
     public void onEnable() {
-        getLogger().info("BoatRace has been enabled!");
-        getServer().getPluginManager().registerEvents(this, this);
+        instance = this;
+        getLogger().info("BoatRace v" + getDescription().getVersion() + " enabled.");
+
+        // Enregistrer listener
+        getServer().getPluginManager().registerEvents(new BoatMovementListener(), this);
+
+        // Enregistrer commande
+        boatRaceCommand = new BoatRaceCommand();
+        this.getCommand("boatrace").setExecutor(boatRaceCommand);
+
+        getLogger().info("BoatRace plugin ready.");
     }
 
-    @Override
-    public void onDisable() {
-        getLogger().info("BoatRace has been disabled!");
+    public static BoatRace getInstance() {
+        return instance;
     }
 
-    @EventHandler
-    public Vector onPlayerMove(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-        if (player.isInsideVehicle() && player.getVehicle() instanceof Boat) {
-            Boat boat = (Boat) player.getVehicle();
-            Location boatLocation = boat.getLocation();
-
-            // Vérifier le bloc 2 blocs en dessous
-            double horizontalSpeedFactor = 2;
-            Block block2Below = boatLocation.getBlock().getRelative(BlockFace.DOWN, 2);
-            if (block2Below.getType() == Material.SPONGE) {
-                Vector currentVelocity = boat.getVelocity();
-                // Appliquer la vélocité modifiée avec une légère augmentation verticale
-                boat.setVelocity(currentVelocity.add(new Vector(0, 0.5, 0)));
-                player.sendMessage("UP");
-                boat.setGravity(false);
-            }
-            else{
-                boat.setGravity(true);
-            }
-            return null;
-        }
-        return null;
+    public boolean isBoatRaceEnabled() {
+        return boatRaceCommand != null && boatRaceCommand.isEnabled();
     }
 }
-
 
