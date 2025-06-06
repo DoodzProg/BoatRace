@@ -1,9 +1,10 @@
 name: BoatRace
 main: fr.doodz.boatrace.BoatRace
-version: '0.1-SNAPSHOT'
+version: '0.2-SNAPSHOT'
 api-version: '1.21'
 authors: [Doodz]
 commands:
   boatrace:
-    description: Toggle or configure the BoatRace plugin
-    usage: /boatrace [activate|deactivate]
+    aliases: [br]
+    description: Commandes du plugin BoatRace
+    usage: /<command> help

@@ -1,26 +1,17 @@
-# BoatRace plugin configuration
-# To be completed as needed
+# Boost settings for the boat behavior
+boost:
+  on_water: true       # Enable boost when the boat is on water blocks
+  on_ice: true         # Enable boost when the boat is on ice blocks
+  on_blocks: false     # Enable boost when the boat is on solid blocks
+  underwater: false    # Enable boost when the boat is underwater
 
-# Worlds where the plugin is enabled
-enabled-worlds:
-  - world
-  - world_nether
-  # - other_world
+# Physics-related configuration values
+physics:
+  boost_vertical_force: 0.6  # Vertical force applied when boosting/jumping
 
-# Types of ice on which the boat can "jump"
-ice-types:
-  - PACKED_ICE
-  - BLUE_ICE
+# Behavioral options
+behavior:
+  only_for_players: true     # Apply effects only if the boat has a player onboard
 
-# Enable or disable the BoatRace system globally
-boat-race-enabled: true
-
-# Debug mode to assist development
+# Debug mode toggle (true or false)
 debug: false
-
-# Maximum speed of the boat on ice (not yet implemented)
-max-speed: 1.0
-
-# Worlds where the plugin is disabled (optional)
-disabled-worlds:
-  - creative_world
